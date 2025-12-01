@@ -1,0 +1,33 @@
+name: CI Veterinaria Mascotas
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: CrudMascotas
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: "8.0.x"
+
+    - name: Restaurar dependencias
+      run: dotnet restore
+
+    - name: Compilar en Release
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Construir imagen Docker (opcional)
+      run: docker build -t veterinaria-mascotas:ci .
