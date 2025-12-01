@@ -1,0 +1,46 @@
+@model CrudMascotas.Models.Mascota
+
+@{
+    ViewData["Title"] = "Eliminar Mascota";
+}
+
+<div class="container mt-4">
+    <div class="card border-danger">
+        <div class="card-header bg-danger text-white">
+            <h4>¿Seguro que deseas eliminar esta mascota?</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    @if (!string.IsNullOrEmpty(Model.FotoRuta))
+                    {
+                        <img src="~/images/mascotas/@Model.FotoRuta"
+                             alt="Foto"
+                             style="width:180px;height:180px;object-fit:cover;border-radius:15px;" />
+                    }
+                </div>
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">Nombre</dt>
+                        <dd class="col-sm-8">@Model.Nombre</dd>
+
+                        <dt class="col-sm-4">Especie</dt>
+                        <dd class="col-sm-8">@Model.Especie</dd>
+
+                        <dt class="col-sm-4">Raza</dt>
+                        <dd class="col-sm-8">@Model.Raza</dd>
+
+                        <dt class="col-sm-4">Dueño</dt>
+                        <dd class="col-sm-8">@Model.NombreDueno</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+                <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>

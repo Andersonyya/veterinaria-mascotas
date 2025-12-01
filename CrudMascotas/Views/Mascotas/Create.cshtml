@@ -1,0 +1,54 @@
+@model CrudMascotas.Models.Mascota
+
+@{
+    ViewData["Title"] = "Agregar Mascota";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Agregar Mascota</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Especie" class="form-label"></label>
+                    <input asp-for="Especie" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Raza" class="form-label"></label>
+                    <input asp-for="Raza" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Edad" class="form-label"></label>
+                    <input asp-for="Edad" class="form-control" type="number" min="0" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="NombreDueno" class="form-label">Nombre del dueño</label>
+                    <input asp-for="NombreDueno" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="TelefonoDueno" class="form-label">Teléfono del dueño</label>
+                    <input asp-for="TelefonoDueno" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Foto de la mascota</label>
+                    <input type="file" name="foto" class="form-control" accept="image/*" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a asp-action="Index" class="btn btn-secondary">Volver</a>
+            </form>
+        </div>
+    </div>
+</div>

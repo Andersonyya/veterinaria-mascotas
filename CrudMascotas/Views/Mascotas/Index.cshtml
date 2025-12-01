@@ -1,0 +1,51 @@
+@model IEnumerable<CrudMascotas.Models.Mascota>
+
+@{
+    ViewData["Title"] = "Mascotas";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-success">Listado de Mascotas</h2>
+        <a class="btn btn-primary" asp-action="Create">Agregar Mascota</a>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Edad</th>
+                <th>Dueño</th>
+                <th>Teléfono</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+@foreach (var item in Model)
+{
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.FotoRuta))
+                    {
+                        <img src="~/images/mascotas/@item.FotoRuta" alt="Foto" style="width:60px;height:60px;object-fit:cover;border-radius:50%;" />
+                    }
+                </td>
+                <td>@item.Nombre</td>
+                <td>@item.Especie</td>
+                <td>@item.Raza</td>
+                <td>@item.Edad</td>
+                <td>@item.NombreDueno</td>
+                <td>@item.TelefonoDueno</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>
+</div>

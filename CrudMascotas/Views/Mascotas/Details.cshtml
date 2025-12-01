@@ -1,0 +1,53 @@
+@model CrudMascotas.Models.Mascota
+
+@{
+    ViewData["Title"] = "Detalles de la Mascota";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h4>Detalles de la Mascota</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    @if (!string.IsNullOrEmpty(Model.FotoRuta))
+                    {
+                        <img src="~/images/mascotas/@Model.FotoRuta"
+                             alt="Foto"
+                             style="width:200px;height:200px;object-fit:cover;border-radius:15px;" />
+                    }
+                    else
+                    {
+                        <p>No hay foto registrada.</p>
+                    }
+                </div>
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">Nombre</dt>
+                        <dd class="col-sm-8">@Model.Nombre</dd>
+
+                        <dt class="col-sm-4">Especie</dt>
+                        <dd class="col-sm-8">@Model.Especie</dd>
+
+                        <dt class="col-sm-4">Raza</dt>
+                        <dd class="col-sm-8">@Model.Raza</dd>
+
+                        <dt class="col-sm-4">Edad</dt>
+                        <dd class="col-sm-8">@Model.Edad años</dd>
+
+                        <dt class="col-sm-4">Dueño</dt>
+                        <dd class="col-sm-8">@Model.NombreDueno</dd>
+
+                        <dt class="col-sm-4">Teléfono</dt>
+                        <dd class="col-sm-8">@Model.TelefonoDueno</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary mt-3">Editar</a>
+            <a asp-action="Index" class="btn btn-secondary mt-3">Volver</a>
+        </div>
+    </div>
+</div>
